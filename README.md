@@ -56,9 +56,11 @@ See below the content of an image and its corresponding txt file:
 
 But if you want to apply the detector to a single image, you add the argument `-img` followed by the image's path as shown in the example below:
 
-```./darknet testimages newdata/voc.data newdata/yolo-voc.2.0.cfg newdata/yolo-voc_final -img newdata/images/000025.jpg -savetxt -saveimg```  
+```./darknet testimages newdata/voc.data newdata/yolo-voc.2.0.cfg newdata/yolo-voc_final.weights -img newdata/images/000058.jpg -savetxt -saveimg```  
 
-Add the argument `-show_img` if you want to visualize the resulting images as soon as the detector evaluates them. (Note: this feature requires openCV compilation. To do so, change the 3rd line of the Makefile to `OPENCV=1` and recompile it).
+Add the argument `-showimg` if you want to visualize the resulting images as soon as the detector evaluates them. (Note: this feature requires openCV compilation. To do so, change the 3rd line of the Makefile to `OPENCV=1` and recompile it). Example:
+
+```./darknet testimages newdata/voc.data newdata/yolo-voc.2.0.cfg newdata/yolo-voc_final.weights -img newdata/images/000058.jpg -showimg```
 
 Remeber that the order of the arguments (file.data, network.cfg, file.weights, etc) do not have to follow this exact order. You can make specify then in any order you want. :) 
 
