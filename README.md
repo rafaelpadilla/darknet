@@ -4,66 +4,6 @@
 2. [(Intro) What is YOLO](#intro_yolo)
 3. [My modifications](#my_modifications)  
    [- Testing multiple images](#test_multiple_imgs)
-
-## My modifications: <a id="my_modifications"></a>
-
-Recently I have forked the official darket project and modified it to attend my demands. Below you can find some additional functions I added to the original project:
-
-#### Testing multiple images  <a id="test_multiple_imgs"></a>
-
-Let's say you want to **detect objects in a single or multiple images** given a network structure and your weights file. Using this function you can also choose to **visualize the results** (images with bounding boxes) or save them. **You can save the detections (bounding boxes and classes) in .txt files** and also save the **resulting images**.
-
-Another good thing is that you don't need to pass the arguments in a specific order anyomore. **This function makes the work easier by accepting the arguments in any order you want.**
-
-See the example below to detect **multiple images**:  
-
- ```./darknet testimages newdata/voc.data newdata/yolo-voc.2.0.cfg newdata/yolo-voc_final.weights -savetxt -saveimg```
- 
- Arguments:  
- 
- + `newdata/voc.data`: the path for your voc.data file. Your voc.data file must contain the following tags:  
-    - `names`: the path to the file containing a list of classes' names.  
-    - `test`: the path to the text file containing a list of images to be tested.  
-    - `results`: the path to the folder where your results will be saved.  
-    See [here](https://github.com/rafaelpadilla/darknet/blob/master/newdata/voc.data) an example of the `voc.data` file.  
- + `-savetxt`: this is an **optional** argument. If you add this argument, a text file will be created for each image containing the bounding boxes and classes detected. It will be saved in the _results_ folder specified in the _voc.data_ file.  
- + `-saveimg`: this is also an **optional** argument. With this argument, the resulting images with the detected objects will be saved in the _results_ folder specified in the _voc.data_ file.  
- + `-threshold`: also optional. The default value is 0.24. Only bouding boxes with higher or equal confidence will be considered.  
-
-The output detections will be seen as:  
-
-<!--- Showing example of output --->
-<div style="text-align:center">
-<p align="center">
-  <img src="https://github.com/rafaelpadilla/DeepLearning-VDAO/blob/master/images/aux_images/output.jpg" width="320"/> </p>
-</div>
-
-If you add the `-saveimg` and `-savetxt` arguments, the `results` folder specified in the in `newdata/voc.data` file will have _\_dets.txt_ files as well as the .png files as can be seen below:
-
-<!--- Showing results --->
-<div style="text-align:center">
-<p align="center">
-  <img src="https://github.com/rafaelpadilla/DeepLearning-VDAO/blob/master/images/aux_images/output_list.jpg" width="300" > </p>
-</div>
-
-See below the content of an image and its corresponding txt file:
-
-<!--- Showing results --->
-<div style="text-align:center">
-<p align="center">
-  <img src="https://github.com/rafaelpadilla/DeepLearning-VDAO/blob/master/images/aux_images/result.jpg" width="470" /> </p>
-</div>
-
-But if you want to apply the detector to a single image, you add the argument `-img` followed by the image's path as shown in the example below:
-
-```./darknet testimages newdata/voc.data newdata/yolo-voc.2.0.cfg newdata/yolo-voc_final.weights -img newdata/images/000058.jpg -savetxt -saveimg```  
-
-Add the argument `-showimg` if you want to visualize the resulting images as soon as the detector evaluates them. (Note: this feature requires openCV compilation. To do so, change the 3rd line of the Makefile to `OPENCV=1` and recompile it). Example:
-
-```./darknet testimages newdata/voc.data newdata/yolo-voc.2.0.cfg newdata/yolo-voc_final.weights -img newdata/images/000058.jpg -showimg```
-
-Remeber that the order of the arguments (file.data, network.cfg, file.weights, etc) do not have to follow this exact order. You can make specify then in any order you want. :) 
-
 ## Darknet <a id="intro_darknet"></a>
 
 <p> 
@@ -124,3 +64,67 @@ YOLO: **You Only Look Once: Unified, Readl-Time Object Detection** (2016)
   [[Google's Group](https://groups.google.com/forum/#!forum/darknet)]: Excellent source of information. People ask and answer doubts about darknet and yolo.  
 	[[Guanghan Ning's blog](http://guanghan.info/blog/en/my-works/yolo-cpu-running-time-reduction-basic-knowledge-and-strategies)]: Studies and analysis on reducing the running time of Yolo on CPU.  
 	[[Guanghan Ning's blog](http://guanghan.info/projects/ROLO/)]: Recurrent YOLO. This is an interesting work mixing recurrent network and yolo for object tracking.  
+
+
+## My modifications: <a id="my_modifications"></a>
+
+Recently I have forked the official darket project and modified it to attend my demands. Below you can find some additional functions I added to the original project.  
+
+All the examples can be easily run. You just need to clone or download this repository, compile and run the commands :)  
+
+#### Testing multiple images  <a id="test_multiple_imgs"></a>
+
+Let's say you want to **detect objects in a single or multiple images** given a network structure and your weights file. Using this function you can also choose to **visualize the results** (images with bounding boxes) or save your results. **You can save the detections (bounding boxes and classes) in .txt files** and also save the **resulting images**.
+
+Another good thing is that you don't need to pass the arguments in a specific order anyomore. **This function makes the work easier by accepting the arguments in any order you want.**
+
+See the example below to detect **multiple images**:  
+
+ ```./darknet testimages newdata/voc.data newdata/yolo-voc.2.0.cfg newdata/yolo-voc_final.weights -savetxt -saveimg```
+ 
+ Arguments:  
+ 
+ + `newdata/voc.data`: the path for your voc.data file. Your voc.data file must contain the following tags:  
+    - `names`: the path to the file containing a list of classes' names.  
+    - `test`: the path to the text file containing a list of images to be tested.  
+    - `results`: the path to the folder where your results will be saved.  
+    See [here](https://github.com/rafaelpadilla/darknet/blob/master/newdata/voc.data) an example of the `voc.data` file.  
+ + `-savetxt`: this is an **optional** argument. If you add this argument, a text file will be created for each image containing the bounding boxes and classes detected. It will be saved in the _results_ folder specified in the _voc.data_ file.  
+ + `-saveimg`: this is also an **optional** argument. With this argument, the resulting images with the detected objects will be saved in the _results_ folder specified in the _voc.data_ file.  
+ + `-threshold`: also **optional**. The default value is 0.24. Only bouding boxes with higher or equal confidence will be considered.  
+
+The output detections will be seen as:  
+
+<!--- Showing example of output --->
+<div style="text-align:center">
+<p align="center">
+  <img src="https://github.com/rafaelpadilla/DeepLearning-VDAO/blob/master/images/aux_images/output.jpg" width="320"/> </p>
+</div>
+
+If you add the `-saveimg` and `-savetxt` arguments, the results (_\_dets.txt_ and .png files) will be created in the `results` folder specified in your `newdata/voc.data` file as seen below:  
+
+<!--- Showing results --->
+<div style="text-align:center">
+<p align="center">
+  <img src="https://github.com/rafaelpadilla/DeepLearning-VDAO/blob/master/images/aux_images/output_list.jpg" width="300" > </p>
+</div>
+
+See below the content of an image and its corresponding txt file:
+
+<!--- Showing results --->
+<div style="text-align:center">
+<p align="center">
+  <img src="https://github.com/rafaelpadilla/DeepLearning-VDAO/blob/master/images/aux_images/result.jpg" width="470" /> </p>
+</div>
+
+Each line of the _\_dets.txt_ file represent a bounding box. The values representing a bounding box are: ```id relative_center_x relative_center_y relative_width relative height```. The ```id``` represents the class order of the detected object that appears in the `names` tag in your `newdata/voc.data` file.  
+ 
+But if you want to apply the detector to a single image, you add the argument `-img` followed by the image's path as shown in the example below:
+
+```./darknet testimages newdata/voc.data newdata/yolo-voc.2.0.cfg newdata/yolo-voc_final.weights -img newdata/images/000058.jpg -savetxt -saveimg```  
+
+Add the argument `-showimg` if you want to visualize the resulting images as soon as the detector evaluates them. (Note: this feature requires openCV compilation. To do so, change the 3rd line of the Makefile to `OPENCV=1` and recompile it). Example:
+
+```./darknet testimages newdata/voc.data newdata/yolo-voc.2.0.cfg newdata/yolo-voc_final.weights -img newdata/images/000058.jpg -showimg```
+
+Remeber that the order of the arguments (file.data, network.cfg, file.weights, etc) do not have to follow this exact order. You can make specify then in any order you want. :) 
