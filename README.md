@@ -117,9 +117,9 @@ See below the content of an image and its corresponding txt file:
   <img src="https://github.com/rafaelpadilla/DeepLearning-VDAO/blob/master/images/aux_images/result.jpg" width="470" /> </p>
 </div>
 
-Each line of the _\_dets.txt_ file represent a bounding box. The values representing a bounding box are: ```id relative_center_x relative_center_y relative_width relative height```. The ```id``` represents the class order of the detected object that appears in the `names` tag in your `newdata/voc.data` file.  
+Each line of the _\_dets.txt_ file represents a bounding box. The values representing a bounding box are: ```id relative_center_x relative_center_y relative_width relative height```. The ```id``` represents the class order of the detected object that appears in the `names` tag in your `newdata/voc.data` file.  
  
-But if you want to apply the detector to a single image, you add the argument `-img` followed by the image's path as shown in the example below:
+But if you want to apply the detector to a single image, you need to add the argument `-img` followed by the image's path as shown in the example below:
 
 ```./darknet testimages newdata/voc.data newdata/yolo-voc.2.0.cfg newdata/yolo-voc_final.weights -img newdata/images/000058.jpg -savetxt -saveimg```  
 
@@ -127,4 +127,4 @@ Add the argument `-showimg` if you want to visualize the resulting images as soo
 
 ```./darknet testimages newdata/voc.data newdata/yolo-voc.2.0.cfg newdata/yolo-voc_final.weights -img newdata/images/000058.jpg -showimg```
 
-Remeber that the order of the arguments (file.data, network.cfg, file.weights, etc) do not have to follow this exact order. You can make specify then in any order you want. :) 
+Remeber that the arguments (file.data, network.cfg, file.weights, etc) do not have to follow an exact order. You can specify them in any position you want. :) 
