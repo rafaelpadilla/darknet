@@ -117,7 +117,7 @@ See below the content of an image and its corresponding txt file:
   <img src="https://github.com/rafaelpadilla/DeepLearning-VDAO/blob/master/images/aux_images/result.jpg" width="470" /> </p>
 </div>
 
-Each line of the _\_dets.txt_ file represents a bounding box. The values representing a bounding box are: ```id relative_center_x relative_center_y relative_width relative height```. The ```id``` represents the class order of the detected object that appears in the `names` tag in your `newdata/voc.data` file.  
+Each line of the _\_dets.txt_ file represents a bounding box. The values representing a bounding box are: ```id confidence relative_center_x relative_center_y relative_width relative height```. The ```id``` represents the class order of the detected object that appears in the `names` tag in your `newdata/voc.data` file. The ```confidence``` represents in % how much sure YOLO is of that detection. Remember the threshold in the `./darknet testimages` command? This confidence of the detected objects will always be equal or higher than the threshold you set.  
  
 But if you want to apply the detector to a single image, you need to add the argument `-img` followed by the image's path as shown in the example below:
 
