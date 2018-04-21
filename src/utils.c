@@ -920,8 +920,9 @@ int *split_threshold_ranges(char *s, double items[], int *len, char **errorMsg)
         while(1)
         {   
             buff = step + buff;
-            if (buff>end)
+            if ((float)buff>(float)end){
                 break;
+                }
             count++;
         }
         buff = begin;

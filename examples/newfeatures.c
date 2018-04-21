@@ -141,13 +141,11 @@ void test_images(int argc, char **argv)
    if (!weightsFile){ printf("\nError: Missing .weights mandatory argument!\n"); return; }
    list *options = read_data_cfg(dataFile);
     
-   /* AQUI */
     double thresholds[1000] = {0}; /*supporting max 1000 thresholds */
     char message[300] = "Success";
     char *error = &message;
     int qteThresholds;
     int ret = split_threshold_ranges(threshChar, thresholds, &qteThresholds, &error);
-    printf("\nqteThresholds: %d", qteThresholds);
     if (ret == 0)
     {
         printf("\nError: %s", error); return 0;
@@ -275,7 +273,6 @@ void test_images(int argc, char **argv)
         }
         printf("\nFolder to store resulting images: %s", outputs_folderIm);
         printf("\nFolder to store resulting bounding boxes: %s", outputs_folderTxt);
-       
         //Loop through list of images
         for (i = 0;i<qtFiles;i++) {
             strcpy(input,filesToTest[i]);
