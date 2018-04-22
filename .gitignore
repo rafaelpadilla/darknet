@@ -23,3 +23,7 @@ Thumbs.db
 
 # My modifications
 yolo_archives/
+
+# Used for the README (on github)
+README.md
+aux_images/
