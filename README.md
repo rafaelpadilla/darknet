@@ -6,7 +6,15 @@
    [- Testing multiple images](#test_multiple_imgs)  
    [- Testing multiple thresholds](#test_multiple_thresholds)
 4. [FAQ](#faq_yolo)  
-   
+  
+--- 
+<p>
+<img src="https://github.com/rafaelpadilla/darknet/blob/master/aux_images/alert.png" width="28" height="28" align="left"/>  
+	
+**Warning:** As the files .weights are large files, they were commited with git-lfs (Large File Storage). Therefore, the they will only be downloaded correctly if you CLONE the project instead of downloading it.
+</p>  
+ 
+---
 ## Darknet <a id="intro_darknet"></a>
 
 <p> 
