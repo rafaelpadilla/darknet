@@ -1,10 +1,12 @@
 # YOLO modifications
 
 1. [(Intro) What is Darknet project?](#intro_darknet)
-2. [(Intro) What is YOLO](#intro_yolo)
+2. [(Intro) What is YOLO](#intro_yolo)  
 3. [My modifications](#my_modifications)  
    [- Testing multiple images](#test_multiple_imgs)  
    [- Testing multiple thresholds](#test_multiple_thresholds)
+4. [FAQ](#faq_yolo)  
+   
 ## Darknet <a id="intro_darknet"></a>
 
 <p> 
@@ -26,7 +28,6 @@
 
 So far, YOLO has two versions: <b>YOLO V1</b> and YOLO V2, also refered as <b>Yolo 9000</b>. Click on the image below to watch YOLO 9000's promo video.
 </p>
-
 
 <!--- Yolo's link for you tube --->
 <p align="center">
@@ -58,14 +59,14 @@ YOLO: **You Only Look Once: Unified, Readl-Time Object Detection** (2016)
 	[[Towards data science](https://towardsdatascience.com/yolo-you-only-look-once-real-time-object-detection-explained-492dc9230006)]: A brief summary about yolo and how it works.  
 	[[Machine Think blog](http://machinethink.net/blog/object-detection-with-yolo/)]: A brief summary about yolo and how it works.  
 	[[Timebutt's github](https://timebutt.github.io/static/how-to-train-yolov2-to-detect-custom-objects/)]: A tutorial explaing how to train yolo 9000 to detect a single class object.  
-	[[Timebutt's github](https://timebutt.github.io/static/understanding-yolov2-training-output/)]: Read this if you want to understand yolo's training output.  
+	[[Timebutt's github](https://timebutt.github.io/static/understanding-yolov2-training-output/)]: Read this if you want to understand yolo's training output -> Not everything is correct here. Be careful!  
 	[[Cvjena's github](https://github.com/cvjena/darknet/blob/master/cfg/yolo.cfg)]: Comments of some of the tags used in the cfg files.  
 	[[Guanghan Ning's blog](http://guanghan.info/blog/en/my-works/train-yolo/)]: A tutorial explaining how to train yolo v1 with your own data. The author used two classes (yield and stop signs).  
 	[[AlexeyAB's github](https://github.com/AlexeyAB/)]: Very good project forked from yolo 9000 supporting Windows and Linux.  
   [[Google's Group](https://groups.google.com/forum/#!forum/darknet)]: Excellent source of information. People ask and answer doubts about darknet and yolo.  
 	[[Guanghan Ning's blog](http://guanghan.info/blog/en/my-works/yolo-cpu-running-time-reduction-basic-knowledge-and-strategies)]: Studies and analysis on reducing the running time of Yolo on CPU.  
 	[[Guanghan Ning's blog](http://guanghan.info/projects/ROLO/)]: Recurrent YOLO. This is an interesting work mixing recurrent network and yolo for object tracking.  
-
+	[[Jonathan Hui](https://medium.com/@jonathan_hui/real-time-object-detection-with-yolo-yolov2-28b1b93e2088)]: One of the most detailed and correct explanations about YOLO V2.  
 
 ## My modifications: <a id="my_modifications"></a>
 
@@ -92,7 +93,7 @@ See the example below to detect **multiple images**:
     See [here](https://github.com/rafaelpadilla/darknet/blob/master/newdata/voc.data) an example of the `voc.data` file.  
  + `-savetxt`: this is an **optional** argument. If you add this argument, a text file will be created for each image containing the bounding boxes and classes detected. It will be saved in the _results_ folder specified in the _voc.data_ file.  
  + `-saveimg`: this is also an **optional** argument. With this argument, the resulting images with the detected objects will be saved in the _results_ folder specified in the _voc.data_ file.  
- + `-threshold`: also **optional**. The default value is 0.24. Only bouding boxes with higher or equal confidence will be considered.  
+ + `-threshold`: also **optional**. The default value is 0.24. Only bounding boxes with higher or equal confidence will be considered.  
 
 The output detections will be seen as:  
 
@@ -173,3 +174,34 @@ Because we are testing many thresholds, folders identifying each threshold will 
 Of course, the command ```./darknet testimages``` also supports the ```-thresh``` argument with only one threshold. The example below shows how to test your images using a single threshold of 75%:
 
 ```./darknet testimages newdata/voc.data newdata/yolo-voc.2.0.cfg newdata/yolo-voc_final.weights -savetxt -saveimg -thresh .75```
+
+## FAQ YOLO <a id="faq_yolo"></a>
+
+**Question 1: What do those values mean during training?**
+
+**Answer:** During training the samples are divided into batches and the batches are grouped into subdivisions, which are set in the .cfg file. While darknet is training YOLO, statistics of the training are presented as shown in the image below:
+
+<!--- Example of training outputs --->
+<p align="center">
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=VOC3huqHrss"><img src="https://github.com/rafaelpadilla/darknet/blob/master/aux_images/training_outputs.png" width="656" height="230" align="center"/></a>
+</p>
+
+The highlighted represents the training for a batch. In this example, each batch contains 64 images divided into 8 subdivisions. Thus, for this particular case each subdivision contains 8 images. Those values represent:
+
+* **Loaded: 0.000036 seconds**: Time to load the (64) images of this batch.  
+* **Region Avg IOU:  0.738649**: For this particular subdivision (containing 8 images), the average IoU ([Intersection over Union](https://www.coursera.org/learn/convolutional-neural-networks/lecture/p9gxz/intersection-over-union)) is 73.86%.
+* **Class: 0.931707**: It is the average of the probabilities of the True Positives. In this case, 93.17% of the detected objects in this subdivision belong to their correct classes.  
+* **Obj: 0.562116**: In YOLOV2, the image is divided into a 13x13 grid. Each cell of the grid "owns" 5 bounding boxes and there is a confidence score for each bounding box. The confidence score reflects how likely the box contains an object. In this example, our training is 56.21% confident that the bounding boxes that must contain an object (ground truth) actually detected an object in them. Higher values means your network is very confident that there is an object where it should be, implying your training is going well. A correct detection (True Positive) is considered if IOU between detected object and groundtruth is >= 50%.  
+_Observation:_ For YOLOV2, each bounding box contains 4 coordinates (x,y,w,h), plus its objectness, plus a probability for each class, summing _5+classes_ parameters per bounding box. Each cell has 5 bounding boxes. This way, it can detect up to 5 different objects of different classes in the same cell.  
+* **No Obj: 0.006090**: It is the same idea as in `Obj`, but now it means that locations where there must be no object, our training also thinks the same. You should expect lower values here.  
+* **Avg Recall: 0.875000**: In short words, recall means "out of the objects that should be detected, how many objects I have actually detected". Recall = TP/(TP + FN). Thus, recall is the division of the number of correctly detected objects by  the total number of objects that should be detected. `Avg Recall` is the average recall of the (8) images of this subdivision. In this example, 87.5% of the all objects that should be detected were correctly detected.  
+* **count: 16**: The total number of objects that were detected in this subdivision.  
+
+The last line gives statistics of the whole batch:  
+
+* **80194**: Number of batches trained so far.  
+**6.186997:** Accumulated lost. The lower the better. You could use this as a reference to stop your training.  
+**6.712183 avg**: The average loss (error) for this batch. We expect it to be the lowest as possible. You could also use this as a reference to stop your training.  
+**0.000010 rate**: Learning rate used to update the weights while training this batch.  
+**2.998310 seconds**:  How long it took to train this batch.  
+**5132416 images**: Number of images trained so far. With this we can calculate the epochs. It is easily verified that the images trained so far is the batch number (80194) times the size of the batch (64). Therefore: 80194*64 = 5132416.  
