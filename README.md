@@ -11,7 +11,7 @@
 <p>
 <img src="https://github.com/rafaelpadilla/darknet/blob/master/aux_images/alert.png" width="28" height="28" align="left"/>  
 	
-**Warning:** As the files .weights are large files, they were committed with git-lfs (Large File Storage). Therefore, the they will only be downloaded correctly if you CLONE the project instead of downloading it.
+**Warning:** As the files .weights are large files, I am sharing them in my googledrive. The weight needed to run this tutorial can be downloaded [here](https://drive.google.com/file/d/11PDp2P-onqr46mwQGPOxxXiP0Jg98QUY/view?usp=sharing). **Don't forget to copy this weight file to the folder /newdata/**.
 </p>  
  
 ---
@@ -99,6 +99,8 @@ See the example below to detect **multiple images**:
     - `test`: the path to the text file containing a list of images to be tested.  
     - `results`: the path to the folder where your results will be saved.  
     See [here](https://github.com/rafaelpadilla/darknet/blob/master/newdata/voc.data) an example of the `voc.data` file.  
+ + `newdata/yolo-voc.2.0.cfg`: The configuration file that represents the backbone of the YOLO v2.  
+ + `newdata/yolo-voc_final.weights`: The pretrained weights used in this example. **Due to its size (~268MB), this weight was not commited with this project, therefore you need to download it [here](https://drive.google.com/file/d/11PDp2P-onqr46mwQGPOxxXiP0Jg98QUY/view?usp=sharing) and put it in the folder /newdata/**.  
  + `-savetxt`: this is an **optional** argument. If you add this argument, a text file will be created for each image containing the bounding boxes and classes detected. It will be saved in the _results_ folder specified in the _voc.data_ file.  
  + `-saveimg`: this is also an **optional** argument. With this argument, the resulting images with the detected objects will be saved in the _results_ folder specified in the _voc.data_ file.  
  + `-threshold`: also **optional**. The default value is 0.24. Only bounding boxes with higher or equal confidence will be considered.  
