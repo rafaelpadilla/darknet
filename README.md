@@ -46,6 +46,7 @@ The authors have created a website explaining how it works, how to use it and ho
 
 YOLO: **You Only Look Once: Unified, Readl-Time Object Detection** (2016)  
 (Joseph Redmon, Santosh Divvala, Ross Girshick, Ali Farhadi)  
+	[[official site](https://pjreddie.com/darknet/yolov1/)]  
 	[[site](https://arxiv.org/abs/1506.02640)] 
 	[[pdf](https://arxiv.org/pdf/1506.02640)] 
 	[[slides](https://docs.google.com/presentation/d/1kAa7NOamBt4calBU9iHgT8a86RRHz9Yz2oh4-GTdX6M/edit#slide=id.p)] 
@@ -54,11 +55,18 @@ YOLO: **You Only Look Once: Unified, Readl-Time Object Detection** (2016)
 	
 **YOLO9000: Better, Faster, Stronger** (2017)  
 (Joseph Redmon, Ali Farhadi)  
+	[[official site](https://pjreddie.com/darknet/yolov2/)]  
 	[[site](https://arxiv.org/abs/1612.08242)] 
 	[[pdf](https://arxiv.org/pdf/1612.08242)] 
 	[[talk](https://www.youtube.com/watch?v=GBu2jofRJtk)] 
 	[[slides](https://docs.google.com/presentation/d/14qBAiyhMOFl_wZW4dA1CkixgXwf0zKGbpw_0oHK8yEM/edit?usp=sharing)] 
-	
+  
+**YOLOv3: An Incremental Improvement** (2018)  
+(Joseph Redmon, Ali Farhadi)  
+	[[official site](https://pjreddie.com/darknet/yolo/)]  
+	[[site](https://arxiv.org/abs/1804.02767)] 
+	[[pdf](https://arxiv.org/pdf/1804.02767)] 
+  
 **YOLO: People talking about it**  
 	[[Andrew NG](https://www.youtube.com/watch?v=9s_FpMpdYW8)] 
 	[[Siraj Raval](https://www.youtube.com/watch?v=4eIBisqx9_g)] 
@@ -75,6 +83,7 @@ YOLO: **You Only Look Once: Unified, Readl-Time Object Detection** (2016)
 	[[Guanghan Ning's blog](http://guanghan.info/blog/en/my-works/yolo-cpu-running-time-reduction-basic-knowledge-and-strategies)]: Studies and analysis on reducing the running time of Yolo on CPU.  
 	[[Guanghan Ning's blog](http://guanghan.info/projects/ROLO/)]: Recurrent YOLO. This is an interesting work mixing recurrent network and yolo for object tracking.  
 	[[Jonathan Hui](https://medium.com/@jonathan_hui/real-time-object-detection-with-yolo-yolov2-28b1b93e2088)]: One of the most detailed and correct explanations about YOLO V2.  
+	[[Ayoosh Kathuria](https://towardsdatascience.com/yolo-v3-object-detection-53fb7d3bfe6b)]: What’s new in YOLO v3?  
 
 ## My modifications: <a id="my_modifications"></a>
 
