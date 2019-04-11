@@ -127,7 +127,7 @@ void test_images(int argc, char **argv)
     printf("\ndataFile: %s", dataFile);
     printf("\ncfgFile: %s", cfgFile);
     printf("\nweightsFile: %s", weightsFile);
-    printf("\nthresh: %f",thresh);
+    printf("\ndefault confidence thresh: %f",thresh);
     printf("\nhier_thresh: %f", hier_thresh);
     printf("\nfilename: %s", filename);
     printf("\nsaveImArg: %s",saveImArg);
@@ -152,9 +152,9 @@ void test_images(int argc, char **argv)
     }
     else
     {
-        printf("\nNumber of thresholds to be tested: %d", qteThresholds);
+        printf("\nNumber of confidence thresholds to be tested: %d", qteThresholds);
         for (int i = 0; i< qteThresholds; i++)
-            printf("\nThreshold %d: %f", i, thresholds[i]);
+            printf("\nconfidence threshold %d: %f", i, thresholds[i]);
         
     }
    /***********************************************/
